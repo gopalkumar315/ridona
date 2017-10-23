@@ -1,6 +1,6 @@
 {
-    "name": "hosseinmousavi/Ridona",
-    "description": "Nacho, nacho man. I want to be a nacho man",
+    "name": "hosseinmousavi/ridona",
+    "description": "",
     "license": "MIT",
     "keywords": ["nacho"],
     "authors": [{
@@ -9,7 +9,7 @@
     }],
     "require": {},
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "6.4.*"
     },
     "autoload": {
         "files": ["src/autoload.php"]
