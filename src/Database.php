@@ -6,25 +6,26 @@ class Database extends Parse
     public $prepared_statements_values = array();
     public $sql                        = '';
 
-    public function __construct($dsn, $user, $password, $database = false)
+    public function __construct($dsn, $user, $password)
     {
         try {
             $this->dbh = new \PDO($dsn, $user, $password);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
-            $this->database = $database;
+            $this->database_name = $this->dbh->query('select database()')->fetchColumn();
 
         } catch (\PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
     }
+
     public function tables($tables = false)
     {
         if (!empty($tables)) {
             $this->tables = $tables;
         } else {
             $sth = $this->dbh->prepare("select TABLE_NAME from information_schema.TABLES where TABLE_SCHEMA=?");
-            $sth->execute(array($this->database));
+            $sth->execute(array($this->database_name));
             $this->tables = $sth->fetchAll(\PDO::FETCH_COLUMN);
         }
 
@@ -42,13 +43,14 @@ class Database extends Parse
     }
     public function by_entire()
     {
-        foreach ($this->sql as $sql) {echo $sql;
+        foreach ($this->sql as $sql) {
+            echo $sql;
             $sth = $this->dbh->prepare($sql);
             $sth->execute($this->prepared_statements_values);
 
-             while ($row = $sth->fetch(\PDO::FETCH_NUM)) {
-                 yield $row;
-             }
+            while ($row = $sth->fetch(\PDO::FETCH_NUM)) {
+                yield $row;
+            }
         }
     }
     public function by_chunk($chunk_size = 10000)
