@@ -24,7 +24,7 @@ require 'src/autoload.php';
 ```
 ---
 ### Reading Files
-_Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions._
+**Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions.**
 for reading files there are three modes: 
 * Reading entire file at once (using file_get_contents) with by_entire() method.
   if you use this method you load the entire file into memory and maybe encounter memory exhaustion problem.
