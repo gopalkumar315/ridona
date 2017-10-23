@@ -1,5 +1,5 @@
 <?php
-namespace Ridona;
+namespace ridona;
 
 class RegexPattern
 {

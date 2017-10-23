@@ -1,5 +1,5 @@
 <?php
-namespace Ridona;
+namespace ridona;
 
 abstract class Parse
 {

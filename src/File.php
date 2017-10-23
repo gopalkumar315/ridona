@@ -1,5 +1,5 @@
 <?php
-namespace Ridona;
+namespace ridona;
 
 class File extends Parse
 {
@@ -18,10 +18,10 @@ class File extends Parse
         } elseif (is_dir($input)) {
             $filenames = $this->get_dir_files($input);
         }
-
-        $this->filenames = array_filter($filenames, function ($filename) {
-            return $this->is_filetype_valid($filename);
-        });
+        $this->filenames=$filenames;
+        // $this->filenames = array_filter($filenames, function ($filename) {
+        //     return $this->is_filetype_valid($filename);
+        // });
 
         if (empty($this->filenames)) {
             throw new NoFileSelectedException('no file or dir exists upon your input');

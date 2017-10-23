@@ -1,8 +1,9 @@
 {
     "name": "hosseinmousavi/ridona",
-    "description": "",
+    "version": "0.0.4",
+    "description": "read big files and database tables with millions of rows without memory concern",
     "license": "MIT",
-    "keywords": [""],
+    "keywords": ["php","read massive files","read database tables","read high volume files and tables"],
     "authors": [{
         "name": "Mir Hossein Mousavi",
         "email": "mhm007@gmail.com"

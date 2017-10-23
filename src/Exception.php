@@ -1,5 +1,5 @@
 <?php
-namespace Ridona;
+namespace ridona;
 
 class BadFileTypeException extends \Exception{};
 class NoFileSelectedException extends \Exception{};

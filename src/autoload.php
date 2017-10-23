@@ -1,6 +1,6 @@
 <?php
 
-namespace Ridona;
+namespace ridona;
 
 require 'Parse.php';
 require 'File.php';
