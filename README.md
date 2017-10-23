@@ -24,7 +24,7 @@ require 'src/autoload.php';
 ```
 ---
 ### Reading Files
-_Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions.
+_Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions._
 for reading files there are three modes: 
 * Reading entire file at once (using file_get_contents) with by_entire() method.
   if you use this method you load the entire file into memory and maybe encounter memory exhaustion problem.
@@ -72,7 +72,7 @@ foreach ($file->by_line() as $line) {
   ....do
 }
 ```
-_by_line() method do not accept any arguments and read each line in evey iteration
+_by_line() method do not accept any arguments and read each line in evey iteration._
 --
 ### Reading Database Tables
 like files we can read tables in two mode:
@@ -135,7 +135,7 @@ foreach ($database->tables(['table_name1','table_name2'])->by_chunk() as $row) {
 }
 ```
 ---
-###Considerations
-1.Only MySQL database tested with this library, and i need your زooperation to see other databases compatibility.
-2.if your file or databse is very big in both cases use by_chunk() method nad if you encounter memory problem decrease chunk_size
-3.Because this library use php generators in by_chunk(),by_line() methods when parsing files and by_entire(),by_chunk() in 4.tables you only can use returned content in foreach,while and for loops and not in array_walk,array_reduce,array_map and array_filter
+### Considerations
+1. Only MySQL database tested with this library, and i need your زooperation to see other databases compatibility.<br>
+2. if your file or databse is very big in both cases use by_chunk() method nad if you encounter memory problem decrease chunk_size.<br>
+3. Because this library use php generators in by_chunk(),by_line() methods when parsing files and by_entire(),by_chunk() in 4. tables you only can use returned content in foreach,while and for loops and not in array_walk,array_reduce,array_map and array_filter.<br>
