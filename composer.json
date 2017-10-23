@@ -1,0 +1,17 @@
+{
+    "name": "hosseinmousavi/Ridona",
+    "description": "Nacho, nacho man. I want to be a nacho man",
+    "license": "MIT",
+    "keywords": ["nacho"],
+    "authors": [{
+        "name": "Mir Hossein Mousavi",
+        "email": "mhm007@gmail.com"
+    }],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "files": ["src/autoload.php"]
+    }
+}
