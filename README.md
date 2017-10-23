@@ -73,7 +73,7 @@ foreach ($file->by_line() as $line) {
 }
 ```
 **by_line() method do not accept any arguments and read each line in evey iteration.**
---
+---
 ### Reading Database Tables
 like files we can read tables in two mode:
 * Read entire table at once
