@@ -9,7 +9,7 @@ Now i think i created a good library to fix the problem so now on you can read f
 * Read Database tables with million records
 * Tuned with php generators and other techniques to use lowest memory as possible
 * Search through all rows of all tables in database
---
+---
 first install ridona via composer:
 ```
 composer require hosseinmousavi/ridona
@@ -22,7 +22,7 @@ or simple include 'src/autoload.php';
 ```php
 require 'src/autoload.php';
 ```
---
+---
 ### Reading Files
 _Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions.
 for reading files there are three modes: 
@@ -134,6 +134,7 @@ foreach ($database->tables(['table_name1','table_name2'])->by_chunk() as $row) {
   ....do
 }
 ```
+---
 ###Considerations
 1.Only MySQL database tested with this library, and i need your زooperation to see other databases compatibility.
 2.if your file or databse is very big in both cases use by_chunk() method nad if you encounter memory problem decrease chunk_size
