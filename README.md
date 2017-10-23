@@ -1,6 +1,6 @@
 # ridona
-## Read big files and database tables with millions of rows without memory concern
-Processing big file like CSV file,TXT file and.. always been a problem in php nad there are two major problem<br>
+## Read big files and MySQL tables with millions of rows without memory concern
+Processing big files like CSV,TXT files and... always been a problem in php and there are two major problems:<br>
 * Memory limitaion
 * Using Poor techniques for reading 
 Now i think i created a good library to fix the problem so now on you can read file in gigabytes, database tables with millions of rows, yeah baby!
