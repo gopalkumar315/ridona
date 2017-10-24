@@ -30,7 +30,7 @@ require 'src/autoload.php';
 
 
 For reading files there are three modes
-* by_chunk()
+* by_chunk() <br>
   With this method you can read big files part to part, you can pass `chunk_size`, the default value is 10,000 bytes, it means in evey iteration you get 10,000 bytes of the file
 ```php
 $file = new ridona\File('./tests/files/lorem_ipsum_1.txt');
@@ -57,10 +57,10 @@ foreach ($file->by_chunk() as $chunk) {
 }
 var_dump($emails);
 ```
-**Please have in mind when you want to extract string from chunks using regex, in every iteration you get specific size of the file and becasue of that maybe some part of the string you want to find be incomplete and regex could'nt find it so use large  `chunk_size` or use  `entire_mode() ` **<br>
+**Please have in mind when you want to extract string from chunks using regex, in every iteration you get specific size of the file and becasue of that maybe some part of the string you want to find be incomplete and regex could'nt find it so use large  `chunk_size` or use  `entire_mode()`**<br>
 You can use any regex, just pass it as second parameter to `Extract::do()`.<br>
 You can also define more regexes in `Pattern.php` file.<br>
-* by_entire()
+* by_entire()<br>
   If you use this method you load the entire file into memory at once (using `file_get_contents()`) and maybe encounter memory exhaustion problem. this method don't accept any arguments.
  ```php
 $file    = new ridona\File('./tests/files/lorem_ipsum_1.txt');
@@ -71,7 +71,7 @@ You can pass a directory or a file path to `File()`.
 $file    = new ridona\File('./tests/files');
 $content = $file->by_entire();
 ```
-* by_line()
+* by_line()<br>
   In this method we read files line by line using php `file()`, so the file will load into an array at once and maybe encounter memory exhaustion problem.
 ```php
 $file = new ridona\File('./tests/files');
@@ -84,7 +84,7 @@ foreach ($file->by_line() as $line) {
 ---
 ### Reading database tables
 Like files we can read tables in two mode.
-* by_chunk()
+* by_chunk()<br>
   We use database limit, offset commands to read table part by part, the default chunk size is 10000 so
   the first executed command is like `select * from table_name limit 10000 offset 0` and second one is
   `select * from table_name limit 10000 offset 10000` and so on.
@@ -104,7 +104,7 @@ foreach ($database->query('select * from table_name where id > ?',['503'])->by_c
   ....do
 }
 ```
-* by_entire()
+* by_entire()<br>
   In this method we use `select * from table_name` to fetch table then iterate over pdo `fetch(PDO::FETCH_NUM)` and return one row per iteration also there might be memory exhaustion problem. this method don't accept any arguments.
 ```php
 $database = new ridona\Database('mysql:dbname=database_name;host=127.0.0.1', 'db_user','db_pass');
