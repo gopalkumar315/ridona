@@ -1,6 +1,6 @@
 # ridona
 ## Read big files and database tables with millions of rows without memory concern.
-Processing big files like CSV,TXT and...always been a problem in php and there are two major problem.
+Processing big text files always been a problem in php and there are two major problem.
 * Memory limitaion.
 * Using poor techniques for reading.<br>
 
@@ -26,7 +26,7 @@ require 'src/autoload.php';
 ```
 ---
 ### Reading Files
-**Only text file like txt,csv... are supported now and other formats like doc,docx,html,pdf will be support in future versions.**
+**Only text files are supported now and other formats like csv,doc,docx,html,pdf will be support in future versions.**
 
 
 For reading files there are three modes
