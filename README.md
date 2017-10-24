@@ -29,7 +29,7 @@ require 'src/autoload.php';
 
 For reading files there are three modes
 * by_chunk()
-  With this method you can read big files part to part, you can pass `chunk_size` in method, the default value is 10,000 bytes, it means in evey iteration you get 10,000 bytes of the file
+  With this method you can read big files part to part, you can pass `chunk_size`, the default value is 10,000 bytes, it means in evey iteration you get 10,000 bytes of the file
 ```php
 $file = new ridona\File('./tests/files/lorem_ipsum_1.txt');
 foreach ($file->by_chunk() as $chunk) {
@@ -45,7 +45,7 @@ foreach ($file->by_chunk() as $chunk) {
   ....do
 }
 ```
-take this, you have a directory of files and want to extract emails from those files, for this case we can use `Extract::do` to extract that. the `Extract::do()` method accepts an array for input and an regex pattern
+take this, you have a directory of files and want to extract emails from those files, for this case we can use `Extract::do` to extract that. the `Extract::do()` accepts an array for input and an regex pattern
  ```php
 $emails = [];
 $files   = new ridona\File('./tests/files');
@@ -75,13 +75,13 @@ foreach ($file->by_line() as $line) {
   ....do
 }
 ```
-**`by_line()` method do not accept any arguments and read each line in evey iteration.**
+**`by_line()` do not accept any arguments and read each line in evey iteration.**
 
 ---
 ### Reading database tables
 Like files we can read tables in two mode.
 * by_chunk()
-  We use database limit, offset commands to read table part by part, the default chunk size is 1000 so
+  We use database limit, offset commands to read table part by part, the default chunk size is 10000 so
   the first executed command is like `select * from table_name limit 10000 offset 0` and second one is
   `select * from table_name limit 10000 offset 10000` and so on.
 ```php
@@ -107,7 +107,7 @@ foreach ($database->tables(['table_name1','table_name2'])->by_chunk() as $row) {
 }
 ```
 * by_entire()
-  In this method we use `select * from table_name` to fetch table then iterate over pdo `fetch(PDO::FETCH_NUM)` method and return one row per iteration also there might be memory exhaustion problem.
+  In this method we use `select * from table_name` to fetch table then iterate over pdo `fetch(PDO::FETCH_NUM)` and return one row per iteration also there might be memory exhaustion problem.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '');
 foreach ($database->query('select * from table_name')->by_entire() as $row) {
@@ -116,7 +116,7 @@ foreach ($database->query('select * from table_name')->by_entire() as $row) {
 ```
 ---
 ### Read all tables in database
-There is a very cool feature here and it is reading all tables with `table()` method, see below.
+There is a very cool feature here and it is reading all tables with `table()`, see below.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
 foreach ($database->tables()->by_entire() as $row) {
@@ -146,5 +146,5 @@ Cool ha!
 ---
 ### Considerations
 1. Only MySQL database tested with this library and i need your cooperation to see other databases compatibility.<br>
-2. if your file or database is very big in both cases use by_chunk() method and if you encounter memory problem decrease chunk_size.<br>
-3. Because this library use php generators in by_chunk(),by_line() methods when parsing files and by_entire(),by_chunk() in tables you only can use returned content in foreach,while and for loops and not in array_walk,array_reduce,array_map and array_filter.<br>
+2. if your file or database is very big in both cases use `by_chunk()` and if you encounter memory problem decrease chunk_size.<br>
+3. Because this library use php generators in `by_chunk()`,`by_line()` when parsing files and `by_entire(),by_chunk()` in tables you only can use returned content in `foreach`,`while` and `for` loops and not in `array_walk,array_reduce,array_map` and `array_filter`.<br>
