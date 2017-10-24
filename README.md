@@ -1,8 +1,8 @@
 # ridona
 ## Read big files and database tables with millions of rows without memory concern.
 Processing big files like CSV,TXT and...always been a problem in php and there are two major problem.
-* Memory limitaion
-* Using poor techniques for reading 
+* Memory limitaion.
+* Using poor techniques for reading<br>.
 **Now with `ridona` you can read files in gigabytes, database tables with millions of rows, yeah baby!** 
 ## ridona advantages
 * Read big text files.
@@ -37,6 +37,7 @@ foreach ($file->by_chunk() as $chunk) {
 }
 ```
 **you should use `by_chunk()` only in `foreach,for or while loops`.<br>**
+
 For example read files of a directory by chunk.
 ```php
 $file = new ridona\File('./tests/files');
@@ -54,7 +55,7 @@ foreach ($file->by_chunk() as $chunk) {
 }
 var_dump($emails);
 ```
-you can use any regex, just pass it as second parameter to `Extract::do()`.
+You can use any regex, just pass it as second parameter to `Extract::do()`.
 * by_entire()
   If you use this method you load the entire file into memory at once (using `file_get_contents()`) and maybe encounter memory exhaustion problem.
  ```php
@@ -115,7 +116,6 @@ foreach ($database->query('select * from table_name')->by_entire() as $row) {
 ```
 ---
 ### Read all tables in database
-**We can read all tables in database using `by_entire()` or `by_chunk()`.**
 There is a very cool feature here and it is reading all tables with `table()` method, see below.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
@@ -130,6 +130,8 @@ foreach ($database->tables(['table_name1','table_name2'])->by_entire() as $row) 
   do...
 }
 ```
+**We can read all tables in database using `by_entire()` or `by_chunk()`.**<br>
+
 We can extract for example emails from databse.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
