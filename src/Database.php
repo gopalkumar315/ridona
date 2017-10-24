@@ -12,6 +12,7 @@ class Database extends Parse
             $this->dbh = new \PDO($dsn, $user, $password);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->dbh->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+            $this->dbh->exec('SET NAMES UTF8');
             $this->database_name = $this->dbh->query('select database()')->fetchColumn();
 
         } catch (\PDOException $e) {
@@ -64,7 +65,7 @@ class Database extends Parse
             $sql_template .= " limit %d offset %d";
 
             if (strstr($sql, ' limit')) {
-                throw new BadSqlException('you cant use LIMIT in chunk mode');
+                throw new BadSqlException('You can\'t use LIMIT,OFFSET in chunk mode');
             }
 
             while (

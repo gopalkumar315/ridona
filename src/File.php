@@ -24,7 +24,7 @@ class File extends Parse
         // });
 
         if (empty($this->filenames)) {
-            throw new NoFileSelectedException('no file or dir exists upon your input');
+            throw new NoFileSelectedException('The file or directory not exists');
         }
     }
 
