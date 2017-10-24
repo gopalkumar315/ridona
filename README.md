@@ -113,7 +113,7 @@ foreach ($database->query('select * from table_name')->by_entire() as $row) {
   ....do
 }
 ```
-`by_entire()` don't accept any arguments.<br>
+**`by_entire()` don't accept any arguments**<br>
 ---
 ### Read all tables in database
 There is a very cool feature here and it is reading all tables with `table()`, see below.
