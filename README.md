@@ -2,7 +2,9 @@
 ## Read big files and database tables with millions of rows without memory concern.
 Processing big files like CSV,TXT and...always been a problem in php and there are two major problem.
 * Memory limitaion.
-* Using poor techniques for reading<br>.
+* Using poor techniques for reading.<br>
+
+
 **Now with `ridona` you can read files in gigabytes, database tables with millions of rows, yeah baby!** 
 ## ridona advantages
 * Read big text files.
@@ -111,7 +113,7 @@ foreach ($database->query('select * from table_name')->by_entire() as $row) {
   ....do
 }
 ```
-**`by_entire()` don't accept any arguments**<br>
+*`by_entire()` don't accept any arguments*<br>
 ---
 ### Read all tables in database
 There is a very cool feature here and it is reading all tables with `table()`, see below.
@@ -130,7 +132,7 @@ foreach ($database->tables(['table_name1','table_name2'])->by_entire() as $row) 
 ```
 **We can read all tables in database using `by_entire()` or `by_chunk()`.**<br>
 
-We can extract for example emails from databse.
+We can extract for example emails from database.
 ```php
 $database = new ridona\Database('mysql:dbname=database_name;host=127.0.0.1', 'db_client_username'.'db_client_password');
 $emails=[];
