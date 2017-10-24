@@ -48,7 +48,7 @@ class File extends Parse
     public function by_chunk($chunk_size = 10000)
     {
         foreach ($this->filenames as $filename) {
-            $file = fopen($filename, 'r');
+            $file = fopen($filename, 'rb');
             while (!feof($file)) {
                 $line = fgets($file, $chunk_size);
                 yield $line;
