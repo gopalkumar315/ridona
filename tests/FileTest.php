@@ -29,7 +29,7 @@ class FileTest extends TestCase
     {
         $file = new ridona\File('./tests/files/lorem_ipsum_1.txt');
         foreach ($file->by_chunk() as $chunk) {
-
+            print_r($chunk);
         }
     }
 
