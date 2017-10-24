@@ -55,7 +55,9 @@ foreach ($file->by_chunk() as $chunk) {
 }
 var_dump($emails);
 ```
-You can use any regex, just pass it as second parameter to `Extract::do()`.
+**Please have in mind when you want to extract string from chunks using regex, in every iteration you get specific size of the file and becasue of that maybe some part of the string you want to find be incomplete and regex could'nt find it so use large  `chunk_size` or use  `entire_mode() ` **<br>
+You can use any regex, just pass it as second parameter to `Extract::do()`.<br>
+You can also define more regexes in `Pattern.php` file.<br>
 * by_entire()
   If you use this method you load the entire file into memory at once (using `file_get_contents()`) and maybe encounter memory exhaustion problem.
  ```php
@@ -67,6 +69,7 @@ You can pass a directory or a file path to `File()`.
 $file    = new ridona\File('./tests/files');
 $content = $file->by_entire();
 ```
+**`by_entire()` don't accept any arguments**<br>
 * by_line()
   In this method we read files line by line using php `file()`, so the file will load into an array at once and maybe encounter memory exhaustion problem.
 ```php
@@ -90,19 +93,13 @@ foreach ($database->query('select * from table_name')->by_chunk() as $row) {
   ....do
 }
 ```
-You can pass limit value as `chunk_size` to `by_chunk()` and be carefull that you can't use limit or offset commands in chunk mode because we use it already.
+You can pass limit value as `chunk_size` to `by_chunk()` and be carefull that you can't use limit or offset commands in chunk mode because we use it already.<br>
+In `query()` we use pdo `query()` so it's possible to write any query with prepared statements and pass values array as second parameter.
+**Values should be in type of array**.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
 $emails=[];
-foreach ($database->tables()->by_chunk() as $row) {
-  ....do
-}
-```
-Or
-```php
-$database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
-$emails=[];
-foreach ($database->tables(['table_name1','table_name2'])->by_chunk() as $row) {
+foreach ($database->query('select * from table_name where id > ?',['503'])->by_chunk() as $row) {
   ....do
 }
 ```
@@ -114,6 +111,7 @@ foreach ($database->query('select * from table_name')->by_entire() as $row) {
   ....do
 }
 ```
+**`by_entire()` don't accept any arguments**<br>
 ---
 ### Read all tables in database
 There is a very cool feature here and it is reading all tables with `table()`, see below.
@@ -136,12 +134,13 @@ We can extract for example emails from databse.
 ```php
 $database = new ridona\Database('mysql:dbname=nrpmem97_01;host=127.0.0.1', 'root', '', 'nrpmem97_01');
 $emails=[];
-foreach ($database->tables(['table_name1','table_name2'])->by_entire() as $row) {
+foreach ($database->tables(['table_name1','table_name2'])->by_chunk(15000) as $row) {
   $matches = ridona\Extract::do($row, ridona\RegexPattern::$email);
   $emails  = array_merge($emails, $matches);
 }
 ```
-Cool ha!
+Cool ha!<br>
+See tests folder for more examples.
 
 ---
 ### Considerations

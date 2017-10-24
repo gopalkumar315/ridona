@@ -1,7 +1,7 @@
 {
     "name": "hosseinmousavi/ridona",
     "version": "0.0.4",
-    "description": "read big files and database tables with millions of rows without memory concern",
+    "description": "Read big files and database tables with millions of rows without memory concern",
     "license": "MIT",
     "keywords": ["php", "read massive files", "read database tables", "read high volume files and tables"],
     "authors": [{
